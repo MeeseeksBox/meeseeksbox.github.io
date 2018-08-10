@@ -60,6 +60,7 @@ div.chart {
     client
       .query("count", {
         event_collection: "dispatch",
+        filters:[{"operator":"not_contains","property_name":"mention.repository","property_value":"/test1"}],
         group_by: ["mention.repository"],
         interval: "weekly",
         timeframe: "this_35_weeks",
