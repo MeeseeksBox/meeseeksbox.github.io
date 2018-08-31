@@ -113,7 +113,7 @@ code {
     var chart = new Keen.Dataviz()
       .el("#keen-example-chart")
       .height(320)
-      .title("Activity / repository / week on a 35 week period")
+      .title("Activity / repository / week on a 52 week period")
       .type("bar")
       .stacked(true)
       .prepare();
@@ -124,7 +124,7 @@ code {
         filters:[{"operator":"not_contains","property_name":"mention.repository","property_value":"/test1"}],
         group_by: ["mention.repository"],
         interval: "weekly",
-        timeframe: "this_35_weeks",
+        timeframe: "this_52_weeks",
         timezone: "US/Pacific"
       })
       .then(function(res) {
