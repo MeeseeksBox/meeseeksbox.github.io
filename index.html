@@ -69,6 +69,7 @@ code {
     <div class="flex-container" style='height:340px'>
       <div class="item initial chart" id="keen-chart-2">auto</div>
       <div class="item auto chart" id="total-pr">auto</div>
+      <div class="item auto chart" id="backport-success">auto</div>
     </div>
 
   <h2>Use MrMeeseeks on Your Own repo</h2>
@@ -177,6 +178,30 @@ code {
       })
       .catch(function(err) {
         chart3.message(err.message);
+      });
+
+   var chart4 = new Keen.Dataviz()
+      .el("#backport-success")
+      .height(240)
+      .title("Backport Success")
+      .stacked(true)
+      .type("columnchart")
+      .prepare();
+    
+    client
+      .query("count", {
+        event_collection: "backport_stats",
+        filters: [{"operator":"not_contains","property_name":"slug","property_value":"test1"},{"operator":"ne","property_name":"reason","property_value":"Sucess"}],
+        group_by: ["reason"],
+        interval: "weekly",
+        timeframe: "this_7_weeks",
+        timezone: "US/Pacific"
+      })
+      .then(function(res) {
+        chart4.data(res).render();
+      })
+      .catch(function(err) {
+        chart.message(err.message);
       });
     
   </script>
