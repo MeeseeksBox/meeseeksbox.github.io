@@ -148,7 +148,7 @@ code {
         event_collection: "dispatch",
         filters: [{"operator":"contains","property_name":"mention.command","property_value":"backport"}],
         group_by: ["mention.organisation"],
-        timeframe: "this_3_years",
+        timeframe: "this_5_years",
         timezone: "US/Pacific"
       })
       .then(function(res) {
@@ -194,7 +194,7 @@ code {
         filters: [{"operator":"not_contains","property_name":"slug","property_value":"test1"},{"operator":"ne","property_name":"reason","property_value":"Sucess"}],
         group_by: ["reason"],
         interval: "weekly",
-        timeframe: "this_7_weeks",
+        timeframe: "this_10_weeks",
         timezone: "US/Pacific"
       })
       .then(function(res) {
