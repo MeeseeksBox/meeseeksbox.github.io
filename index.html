@@ -37,6 +37,7 @@ p, h2, h3{
 }
 
 .flex-container {
+  margin-left: 25px;
   resize: horizontal;
   overflow: hidden;
   display: flex;
@@ -47,6 +48,8 @@ p, h2, h3{
 }
 
 .auto {
+  width: 30%;
+  margin: 10px;
   flex: auto;
 }
 
@@ -152,7 +155,15 @@ code {
         timezone: "US/Pacific"
       })
       .then(function(res) {
-        chart2.data(res).render();
+        var data = chart2.data(res);
+        console.log(data);
+        data.dataset = data.dataset.sortRows('desc', function(arr){
+              console.log(arr);
+              return arr[1]
+            }
+        );
+        data.dataset.matrix[0] = ['Organisation', 'Backports'];
+        data.render()
       })
       .catch(function(err) {
         chart2.message(err.message);
