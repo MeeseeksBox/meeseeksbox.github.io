@@ -69,10 +69,10 @@ code {
   </a>
   <h1>Meeseeks Box Usage</h1>
   <div class='chart' id="keen-example-chart"> </div>
+  <div class="chart" id="backport-success">auto</div>
     <div class="flex-container" style='height:340px'>
       <div class="item initial chart" id="keen-chart-2">auto</div>
       <div class="item auto chart" id="total-pr">auto</div>
-      <div class="item auto chart" id="backport-success">auto</div>
     </div>
 
   <h2>Use MrMeeseeks on Your Own repo</h2>
@@ -205,7 +205,7 @@ code {
         filters: [{"operator":"not_contains","property_name":"slug","property_value":"test1"},{"operator":"ne","property_name":"reason","property_value":"Sucess"}],
         group_by: ["reason"],
         interval: "weekly",
-        timeframe: "this_10_weeks",
+        timeframe: "this_20_weeks",
         timezone: "US/Pacific"
       })
       .then(function(res) {
