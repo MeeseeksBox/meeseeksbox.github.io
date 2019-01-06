@@ -205,7 +205,7 @@ code {
         filters: [{"operator":"not_contains","property_name":"slug","property_value":"test1"},{"operator":"ne","property_name":"reason","property_value":"Sucess"}],
         group_by: ["reason"],
         interval: "weekly",
-        timeframe: "this_20_weeks",
+        timeframe: "this_52_weeks",
         timezone: "US/Pacific"
       })
       .then(function(res) {
