@@ -37,6 +37,7 @@ p, h2, h3{
 }
 
 .flex-container {
+  margin-left: 25px;
   resize: horizontal;
   overflow: hidden;
   display: flex;
@@ -47,6 +48,8 @@ p, h2, h3{
 }
 
 .auto {
+  width: 30%;
+  margin: 10px;
   flex: auto;
 }
 
@@ -66,10 +69,10 @@ code {
   </a>
   <h1>Meeseeks Box Usage</h1>
   <div class='chart' id="keen-example-chart"> </div>
+  <div class="chart" id="backport-success">auto</div>
     <div class="flex-container" style='height:340px'>
       <div class="item initial chart" id="keen-chart-2">auto</div>
       <div class="item auto chart" id="total-pr">auto</div>
-      <div class="item auto chart" id="backport-success">auto</div>
     </div>
 
   <h2>Use MrMeeseeks on Your Own repo</h2>
@@ -148,11 +151,19 @@ code {
         event_collection: "dispatch",
         filters: [{"operator":"contains","property_name":"mention.command","property_value":"backport"}],
         group_by: ["mention.organisation"],
-        timeframe: "this_3_years",
+        timeframe: "this_5_years",
         timezone: "US/Pacific"
       })
       .then(function(res) {
-        chart2.data(res).render();
+        var data = chart2.data(res);
+        console.log(data);
+        data.dataset = data.dataset.sortRows('desc', function(arr){
+              console.log(arr);
+              return arr[1]
+            }
+        );
+        data.dataset.matrix[0] = ['Organisation', 'Backports'];
+        data.render()
       })
       .catch(function(err) {
         chart2.message(err.message);
@@ -194,7 +205,7 @@ code {
         filters: [{"operator":"not_contains","property_name":"slug","property_value":"test1"},{"operator":"ne","property_name":"reason","property_value":"Sucess"}],
         group_by: ["reason"],
         interval: "weekly",
-        timeframe: "this_7_weeks",
+        timeframe: "this_52_weeks",
         timezone: "US/Pacific"
       })
       .then(function(res) {
